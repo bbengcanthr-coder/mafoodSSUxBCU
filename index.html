@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>รีวิวรสชาติอาหาร - บุญบั้งไฟ SSUxBCUxCKU</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+            --primary: #111827;
+            --primary-hover: #374151;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f9fafb; /* พื้นหลังข้างนอกสุด */
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* จำลองขนาดให้พอดีหน้าจอโทรศัพท์ */
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        /* ส่วนหัวและโลโก้ */
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logos-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .logo-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--text-light);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* ฟอร์มรีวิว */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-family: 'Prompt', sans-serif;
+            font-size: 15px;
+            background-color: #fafafa;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        select:focus, textarea:focus {
+            border-color: var(--text-main);
+            background-color: var(--bg-color);
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Prompt', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 32px 0;
+        }
+
+        /* ส่วนแสดงสถิติ Word Cloud */
+        .stats-section {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .word-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            gap: 12px;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: var(--radius);
+            min-height: 120px;
+        }
+
+        .word-item {
+            transition: all 0.3s ease;
+            color: var(--primary);
+        }
+
+        /* ส่วนแสดงรีวิวล่าสุด */
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .review-card {
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-color);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .badge-group {
+            background: #f3f4f6;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .review-time {
+            color: var(--text-light);
+        }
+
+        .review-text {
+            font-size: 15px;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="header">
+            <div class="logos-wrapper">
+                <div class="logo-box">
+                    <img src="https://via.placeholder.com/60?text=SSU" alt="SSU Logo" id="logo-ssu">
+                </div>
+                <div class="logo-box">
+                    <img src="https://via.placeholder.com/60?text=BCU" alt="BCU Logo" id="logo-bcu">
+                </div>
+            </div>
+            <h1>รีวิวอาหารกลุ่มเรา</h1>
+            <p class="subtitle">กิจกรรม บุญบั้งไฟ SSU x BCU x CKU</p>
+        </header>
+
+        <main>
+            <div class="form-group">
+                <label for="group-select">เลือกกลุ่มของคุณ</label>
+                <select id="group-select">
+                    <option value="" disabled selected>-- กรุณาเลือกกลุ่ม --</option>
+                    <option value="A">กลุ่ม A</option>
+                    <option value="B">กลุ่ม B</option>
+                    <option value="C">กลุ่ม C</option>
+                    <option value="D">กลุ่ม D</option>
+                    <option value="E">กลุ่ม E</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="review-text">รสชาติเป็นยังไงบ้าง?</label>
+                <textarea id="review-text" placeholder="เช่น เค็มไปนิด, อร่อยมาก, นัวสุดๆ..."></textarea>
+            </div>
+
+            <button id="submit-btn">ส่งรีวิว</button>
+        </main>
+
+        <hr>
+
+        <section class="stats-section">
+            <label>สถิติรสชาติอาหารโดยรวม</label>
+            <div class="word-cloud" id="word-cloud-container">
+                <span style="font-size: 14px; color: #9ca3af;">ยังไม่มีข้อมูลสถิติ</span>
+            </div>
+        </section>
+
+        <section>
+            <label style="margin-bottom: 12px;">รีวิวล่าสุด</label>
+            <div class="reviews-list" id="reviews-container">
+                </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+        // -----------------------------------------
+        // 1. ตั้งค่า Firebase ของคุณที่นี่
+        // -----------------------------------------
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const reviewsRef = ref(db, 'food_reviews');
+
+        // -----------------------------------------
+        // 2. ตั้งค่าระบบตรวจจับคำ (Word Cloud)
+        // -----------------------------------------
+        const tasteKeywords = [
+            "เค็ม", "หวาน", "เปรี้ยว", "เผ็ด", "จืด", 
+            "อร่อย", "นัว", "แซ่บ", "ขม", "กลมกล่อม", "มัน"
+        ];
+
+        // -----------------------------------------
+        // 3. จัดการ DOM Elements
+        // -----------------------------------------
+        const groupSelect = document.getElementById('group-select');
+        const reviewText = document.getElementById('review-text');
+        const submitBtn = document.getElementById('submit-btn');
+        const reviewsContainer = document.getElementById('reviews-container');
+        const wordCloudContainer = document.getElementById('word-cloud-container');
+
+        // -----------------------------------------
+        // 4. ฟังก์ชันส่งข้อมูล
+        // -----------------------------------------
+        submitBtn.addEventListener('click', async () => {
+            const group = groupSelect.value;
+            const text = reviewText.value.trim();
+
+            if (!group) {
+                alert('กรุณาเลือกกลุ่มก่อนส่งรีวิว');
+                return;
+            }
+            if (!text) {
+                alert('กรุณาพิมพ์รีวิวสักนิดนึงนะ');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'กำลังส่ง...';
+
+            try {
+                await push(reviewsRef, {
+                    group: group,
+                    text: text,
+                    timestamp: serverTimestamp()
+                });
+                
+                reviewText.value = '';
+                groupSelect.value = '';
+                alert('ส่งรีวิวสำเร็จ! ขอบคุณสำหรับความคิดเห็น');
+            } catch (error) {
+                console.error("Error adding review: ", error);
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'ส่งรีวิว';
+            }
+        });
+
+        // -----------------------------------------
+        // 5. ฟังก์ชันดึงข้อมูลแบบ Realtime & คำนวณสถิติ
+        // -----------------------------------------
+        onValue(reviewsRef, (snapshot) => {
+            const data = snapshot.val();
+            reviewsContainer.innerHTML = '';
+            
+            if (!data) {
+                reviewsContainer.innerHTML = '<p style="text-align:center; color:#9ca3af; font-size:14px;">ยังไม่มีรีวิว เป็นคนแรกที่รีวิวสิ!</p>';
+                return;
+            }
+
+            const reviewsArray = [];
+            let wordCounts = {};
+            
+            // เตรียมค่าเริ่มต้นให้คีย์เวิร์ด
+            tasteKeywords.forEach(word => wordCounts[word] = 0);
+
+            // วนลูปอ่านข้อมูล
+            for (let id in data) {
+                const review = data[id];
+                reviewsArray.push(review);
+
+                // นับคำสำหรับ Word Cloud
+                if (review.text) {
+                    tasteKeywords.forEach(word => {
+                        // นับจำนวนคำที่เจอในประโยค
+                        const regex = new RegExp(word, 'g');
+                        const matches = review.text.match(regex);
+                        if (matches) {
+                            wordCounts[word] += matches.length;
+                        }
+                    });
+                }
+            }
+
+            // เรียงลำดับรีวิวล่าสุดขึ้นก่อน
+            reviewsArray.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+            // แสดงผลรีวิว (ดึงมาแค่ 10 อันล่าสุดเพื่อความสวยงาม)
+            reviewsArray.slice(0, 10).forEach(review => {
+                const date = review.timestamp ? new Date(review.timestamp).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }) : 'เมื่อสักครู่';
+                
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div class="review-header">
+                        <span class="badge-group">กลุ่ม ${review.group}</span>
+                        <span class="review-time">${date}</span>
+                    </div>
+                    <div class="review-text">${escapeHTML(review.text)}</div>
+                `;
+                reviewsContainer.appendChild(card);
+            });
+
+            // อัปเดต Word Cloud
+            renderWordCloud(wordCounts);
+        });
+
+        // -----------------------------------------
+        // 6. ฟังก์ชันวาด Word Cloud
+        // -----------------------------------------
+        function renderWordCloud(counts) {
+            wordCloudContainer.innerHTML = '';
+            let hasWords = false;
+
+            for (const [word, count] of Object.entries(counts)) {
+                if (count > 0) {
+                    hasWords = true;
+                    const span = document.createElement('span');
+                    span.className = 'word-item';
+                    span.textContent = word;
+                    
+                    // คำนวณขนาดตัวอักษร (เริ่มต้น 14px + (จำนวนที่เจอ * 2px)) สูงสุดไม่เกิน 40px
+                    let fontSize = Math.min(14 + (count * 2.5), 40);
+                    
+                    // เพิ่มความหนาตามจำนวนที่เจอ
+                    let fontWeight = count >= 5 ? 600 : (count >= 3 ? 500 : 400);
+
+                    span.style.fontSize = `${fontSize}px`;
+                    span.style.fontWeight = fontWeight;
+                    
+                    wordCloudContainer.appendChild(span);
+                }
+            }
+
+            if (!hasWords) {
+                wordCloudContainer.innerHTML = '<span style="font-size: 14px; color: #9ca3af;">กำลังรวบรวมรสชาติ...</span>';
+            }
+        }
+
+        // ป้องกัน XSS (ความปลอดภัยเบื้องต้น)
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
